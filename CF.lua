@@ -28,5 +28,4 @@ net.Receive( "CFNewGame", function()
     end
     timer.Simple( math.random(yeetish + 3,yeetish + 10), newFlip)
 end)
-
 newFlip()
