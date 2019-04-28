@@ -1,6 +1,7 @@
 include("autorun/coinflips_config.lua")
 local betAmount = CF.MinFlipPrice * 10
 local yeetish = CF.FlipDelay + CF.FlipLength + 1 or 11
+local ohFuckingYeet = 0
 local currentTeam
 local op;
 local function newFlip()
@@ -21,11 +22,14 @@ net.Receive( "CFNewGame", function()
     print("Winning team: " .. winner)
     if winner == currentTeam then
         print("Flip Won")
+        ohFuckingYeet = ohFuckingYeet + betAmount
         betAmount = betAmount * 1.6
     else
         print("Flip Lost")
+        ohFuckingYeet = ohFuckingYeet - betAmount
         betAmount = CF.MinFlipPrice * 10
     end
+    print("Total profit: " .. ohFuckingYeet)
     timer.Simple( math.random(yeetish + 3,yeetish + 10), newFlip)
 end)
 newFlip()
