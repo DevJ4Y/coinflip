@@ -13,7 +13,7 @@ local function newFlip()
         net.WriteUInt(currentTeam, 2 )
     net.SendToServer()
 end
-net.Receive( "CFNewGame", function()
+net.Receive("CFNewGame", function()
     op = net.ReadEntity()
     MY = net.ReadUInt(32)
     PP = net.ReadUInt(2)
@@ -23,12 +23,12 @@ net.Receive( "CFNewGame", function()
     print("Winning team: " .. winner)
     if winner == currentTeam then
         print("Flip Won")
-        ohFuckingYeet = ohFuckingYeet + betAmount
-        betAmount = betAmount * multiYote
+        ohFuckingYeet = ohFuckingYeet + MY
+        betAmount = MY * multiYote
         multiYote = multiYote + 0.1
     else
         print("Flip Lost")
-        ohFuckingYeet = ohFuckingYeet - betAmount
+        ohFuckingYeet = ohFuckingYeet - MY
         betAmount = CF.MinFlipPrice * 10
         multiYote = 1.5
     end
